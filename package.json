@@ -1,6 +1,6 @@
 {
   "name": "@printy/react-context-menu",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Context menu component for React",
   "main": "index.ts",
   "scripts": {
@@ -16,5 +16,5 @@
   ],
   "author": "jorensm",
   "license": "MIT",
-  "repository": "git:Printy-Studios/react-context-menu"
+  "repository": "github:Printy-Studios/react-context-menu"
 }
