@@ -25,4 +25,4 @@ The `<Menu/>` component accepts a single prop `options`, which is an array of ob
 
 You can create multiple `<ContextMenuContainer/>`s each with their own menu component, and you can also nest multiple `<ContextMenuContainer/>`s
 
-For any questions or issues feel free to contact me at jorensmerenjanu@gmail.com 
+For any questions or issues feel free to submit an issue on the repo
