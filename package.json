@@ -10,9 +10,7 @@
     "react",
     "context",
     "menu",
-    "context",
-    "component",
-    "menu"
+    "component"
   ],
   "author": "jorensm",
   "license": "MIT",
