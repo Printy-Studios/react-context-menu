@@ -3,7 +3,7 @@
   "version": "1.0.5",
   "description": "Context menu component for React",
   "main": "src/index.ts",
-  "files": ["src", "package.json", "README.md"],
+  "files": ["src", "package.json", "README.md", "LICENSE"],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
