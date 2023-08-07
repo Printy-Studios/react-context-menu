@@ -1,5 +1,7 @@
 # React context menu
 
+![react-context-menu-example](https://github.com/Printy-Studios/react-context-menu/assets/17122123/82c07b0d-16e5-411d-b15a-a7a0fe7b7b47)
+
 This is a small React package that helps you with setting up context menus 
 (the ones that appear when you right click).
 
