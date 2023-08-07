@@ -2,7 +2,8 @@
   "name": "@printy/react-context-menu",
   "version": "1.0.5",
   "description": "Context menu component for React",
-  "main": "index.ts",
+  "main": "src/index.ts",
+  "files": ["src", "package.json", "README.md"],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
