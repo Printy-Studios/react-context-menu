@@ -1,0 +1,10 @@
+.MenuWrapper {
+    position: absolute;
+    height: fit-content;
+    width: fit-content;
+}
+
+.MenuWrapper:focus {
+    outline: none;
+    border: none;
+}
