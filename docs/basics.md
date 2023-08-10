@@ -67,7 +67,7 @@ export default function HeroSection() {
 }
 ```
 
-IMAGE
+![Hero section with styles added](./img/basics-hero-section-2.PNG)
 
 <sub>**NOTE:** Generally, it is considered bad practice to use inline CSS styles, but 
 I've done so here for the sake of simplicity. Usually you would create a separate
@@ -148,7 +148,7 @@ see the [tutorial on how to make a custom menu component](#)
 
 Now if you right click the hero section, the context menu will appear. Yay! We did it!
 
-IMAGE
+![Context menu in hero section](./img/basics-hero-section-3.PNG)
 
 Notice that if you right click anywhere else on the page besides the hero section, our context menu will not activate. This is because the context menu is only applied within the `<ContextMenuContainer/>`, which resides in our hero section. If you want to apply a context menu to the entire page, put `<ContextMenuContainer/>` somewhere at the top level of the component tree, like so:
 
@@ -223,7 +223,9 @@ Let's continue where we left off and add another context to the existing one
 </ContextMenuContainer>
 ```
 
-IMAGE
+![New box in the hero section](./img/basics-hero-section-4.PNG)
+
+![Context menu of the new box in the hero section](./img/basics-hero-section-5.PNG)
 
 As you can see, if you right click the new nested context, it will show the menu
 for that context instead of the parent context.
