@@ -32,6 +32,12 @@ export default function ContextMenuContainer( { children, menu, className, style
     const handleRightClick = (e: React.MouseEvent) => {
         e.preventDefault()
         e.stopPropagation()
+
+        if (!menu) {
+            console.warn('No menu prop specified for ContextMenuContainer component!')
+            return;
+        }
+
         setShowMenu(true)
 
         const menu_rect = menuRef.current.getBoundingClientRect();
@@ -72,7 +78,7 @@ export default function ContextMenuContainer( { children, menu, className, style
 
     return (
         <div
-            className={`${className ? ' ' + className : ''}`}
+            className={`ContextMenuContainer${className ? ' ' + className : ''}`}
             style={{
                 ...style
             }}

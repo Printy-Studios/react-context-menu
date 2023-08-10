@@ -1,4 +1,4 @@
-# react-context-menu tutorial
+# react-context-menu basics
 
 In this tutorial I will show you how to use the `react-context-menu` library
 
@@ -42,7 +42,7 @@ export default function App() {
 }
 ```
 
-IMAGE
+![Hero section without any styling](./img/basics-hero-section-1.PNG)
 
 Currently the hero section is very small in height and not distinguishable 
 because there is not much content in it and no styles. Let's apply some styles
@@ -86,7 +86,7 @@ import ContextMenuContainer, { Menu } from '@printy/react-context-menu'
 ```
 
 Next, add the `<ContextMenuContainer/>` component inside the `<section>` element
-and move the text inside the newly added component
+and move the hero text inside the newly added component
 
 *HeroSection.tsx*
 ```
@@ -96,9 +96,141 @@ and move the text inside the newly added component
         /* ... */
     }}
 >
-    <ContextMenuContainer>
+    <ContextMenuContainer
+        style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
+        }}
+    >
         This is my hero section!
     </ContextMenuContainer>
 </section>
 /* ... */
 ```
+
+At this point, if you right click the section, nothing will happen. That's because
+we haven't specfied a `menu` prop for the `<ContextMenuContainer/>`, so let's go
+ahead and do that. In this tutorial we will be using the `<Menu/>` component that
+comes along with the package. 
+
+*HeroSection.tsx*
+```
+<ContextMenuContainer
+    style={{
+        /* ... */
+    }}
+    menu={
+        <Menu
+            options={[
+                {
+                    label: 'Option #1'
+                },
+                {
+                    label: 'Option #2'
+                },
+                {
+                    label: 'Option #3'
+                },
+                {
+                    label: 'Option #4'
+                }
+            ]}
+        />
+    }
+>
+```
+
+[Full documentation on the menu component](#) 
+
+If you want to create and use a custom menu component,
+see the [tutorial on how to make a custom menu component](#)
+
+Now if you right click the hero section, the context menu will appear. Yay! We did it!
+
+IMAGE
+
+Notice that if you right click anywhere else on the page besides the hero section, our context menu will not activate. This is because the context menu is only applied within the `<ContextMenuContainer/>`, which resides in our hero section. If you want to apply a context menu to the entire page, put `<ContextMenuContainer/>` somewhere at the top level of the component tree, like so:
+
+```
+export default function App() {
+    return (
+        <ContextMenuContainer
+            /* ... */
+        >
+            /* The rest of your app code */
+        </ContextMenuContainer>
+    )
+}
+```
+
+### Adding click handlers
+
+Let's add some click handlers to test our context menu. With the `<Menu/>` component it's easy - simply pass a `onClick` property in the target option, like so:
+
+```
+<Menu
+    options={[
+        {
+            label: 'Option #1',
+            onClick: () => console.log('Clicked option #1')
+            
+        },
+        /* ...The other options... */
+    ]}
+/>
+```
+
+Now if you click on option #1, you should see a message in your console!
+
+### Nested contexts
+
+It is possible to have nested contexts, meaning contexts within contexts. If you nest a context within another context, the lower level context will be preferred over higher level context.
+
+Let's continue where we left off and add another context to the existing one
+
+```
+<ContextMenuContainer
+    /* ...First context menu... */
+>
+    This is my hero section!
+    <ContextMenuContainer
+        style={{
+            width: '100px',
+            height: '100%',
+            backgroundColor: 'limegreen',
+            marginLeft: 'auto'
+        }}
+        menu={
+            <Menu
+                options={[
+                    {
+                        label: "Option A"
+                    },
+                    {
+                        label: "Option B"
+                    },
+                    {
+                        label: "Option C"
+                    },
+                    {
+                        label: "Option D"
+                    }
+                ]}
+            />
+        }
+    />
+</ContextMenuContainer>
+```
+
+IMAGE
+
+As you can see, if you right click the new nested context, it will show the menu
+for that context instead of the parent context.
+
+## Conclusion
+
+In this tutorial we learned the basics of using `@printy/react-context-menu`. 
+
+* [Learn how to create a custom menu component](#)
+* [Explore the API](#)
