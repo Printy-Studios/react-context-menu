@@ -20,7 +20,11 @@ To install this package, simply run `npm i @printy/react-context-menu`
 
 ## Usage
 
-To create a context menu area (area in which the context menu will be allowed to activate), import and create a `<ContextMenuContainer />` component. If you want to apply the context to an already existing element, simply wrap `<ContextMenuContainer />` around it.
+To create a context menu area (area in which the context menu will be allowed to
+ activate), import and create a `<ContextMenuContainer />` component. If you 
+want to apply the context to an already existing element, simply add 
+`<ContextMenuContainer />` inside it and it will automatically stretch to the 
+size of its container
 
 You must pass a single prop `menu` which specifies the component to render as the context menu.
 
@@ -30,4 +34,4 @@ The `<Menu/>` component accepts a single prop `options`, which is an array of ob
 
 You can create multiple `<ContextMenuContainer/>`s each with their own menu component, and you can also nest multiple `<ContextMenuContainer/>`s
 
-For any questions or issues feel free to submit an issue on the repo
+For any questions or issues feel free to submit an issue on [the repo](https://github.com/Printy-Studios/react-context-menu)
