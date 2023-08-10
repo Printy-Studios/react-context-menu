@@ -22,7 +22,7 @@ type Props = HTMLAttributes<HTMLDivElement> & {
     menu?: ReactNode
 }
 
-export default function ContextMenuContainer( { children, menu, className }: PropsWithChildren<Props>) {
+export default function ContextMenuContainer( { children, menu, className, style }: PropsWithChildren<Props>) {
 
     const [showMenu, setShowMenu] = useState<boolean>(false)
     const [menuPosition, setMenuPosition] = useState<Position>({ top: 0, left: 0 })
@@ -73,6 +73,9 @@ export default function ContextMenuContainer( { children, menu, className }: Pro
     return (
         <div
             className={`${className ? ' ' + className : ''}`}
+            style={{
+                ...style
+            }}
             onContextMenu={handleRightClick}
         >
             <div 
@@ -81,7 +84,7 @@ export default function ContextMenuContainer( { children, menu, className }: Pro
                 className="MenuWrapper"
                 style={{
                     visibility: showMenu ? 'visible' : 'hidden',
-                    ...menuPosition
+                    ...menuPosition,
                 }}
             >
                 {menu}
