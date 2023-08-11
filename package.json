@@ -9,7 +9,7 @@
     "clean": "rimraf /dist",
     "copy-files": "copyfiles -u 1 src/**/*.css dist/",
     "build": "npm run clean && tsc && npm run copy-files",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "keywords": [
     "react",
@@ -19,5 +19,8 @@
   ],
   "author": "jorensm",
   "license": "MIT",
-  "repository": "github:Printy-Studios/react-context-menu"
+  "repository": "github:Printy-Studios/react-context-menu",
+  "devDependencies": {
+    "@testing-library/react": "^14.0.0"
+  }
 }
