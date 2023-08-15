@@ -34,4 +34,10 @@ The `<Menu/>` component accepts a single prop `options`, which is an array of ob
 
 You can create multiple `<ContextMenuContainer/>`s each with their own menu component, and you can also nest multiple `<ContextMenuContainer/>`s
 
+## Contributing
+
+If you want to contribute, you can submit bug reports or add new features and submit a PR. Before starting work on a new branch, please share your idea in the repo's issues section and have it approved (it will most likely get approved even if it's a crazy idea)
+
+## Support
+
 For any questions or issues feel free to submit an issue on [the repo](https://github.com/Printy-Studios/react-context-menu)
