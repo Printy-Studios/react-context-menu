@@ -5,7 +5,7 @@
 This is a small React package that helps you with setting up context menus 
 (the ones that appear when you right click).
 
-**Note:** This library currently only works for TypeScript
+ <sub>**Note**: This library is in early development and may not work properly in all environments.</sub>
 
 ## Features
 
