@@ -5,7 +5,7 @@
 This is a small React package that helps you with setting up context menus 
 (the ones that appear when you right click).
 
-**Note:** This library currently only works for TypeScript
+ <sub>**Note**: This library is in early development and may not work properly in all environments.</sub>
 
 ## Features
 
@@ -33,5 +33,11 @@ This package focuses on helping with the functionality and behavior of a context
 The `<Menu/>` component accepts a single prop `options`, which is an array of objects with properties `label` and `onClick`. `label` is the label that will appear on the menu item, and `onClick` is the event handler for clicking on the item.
 
 You can create multiple `<ContextMenuContainer/>`s each with their own menu component, and you can also nest multiple `<ContextMenuContainer/>`s
+
+## Contributing
+
+If you want to contribute, you can submit bug reports or add new features and submit a PR. Before starting work on a new branch, please share your idea in the repo's issues section and have it approved (it will most likely get approved even if it's a crazy idea)
+
+## Support
 
 For any questions or issues feel free to submit an issue on [the repo](https://github.com/Printy-Studios/react-context-menu)
