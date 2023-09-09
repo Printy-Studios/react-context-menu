@@ -4,12 +4,15 @@ import
     HTMLAttributes, 
     PropsWithChildren, 
     ReactNode, 
+    useContext, 
     useEffect, 
+    useId, 
     useRef, 
     useState 
 } from 'react'
 
 import './ContextMenuContainer.css'
+import { ContextMenuContext } from './ContextMenuProvider'
 
 type Position = {
     top?: number | string,
@@ -22,7 +25,13 @@ type Props = HTMLAttributes<HTMLDivElement> & {
     menu?: ReactNode
 }
 
+//let max_id
+
 export default function ContextMenuContainer( { children, menu, className, style }: PropsWithChildren<Props>) {
+
+    const { setActiveMenu, activeMenu } = useContext(ContextMenuContext)
+
+    const id = useId()
 
     const [showMenu, setShowMenu] = useState<boolean>(false)
     const [menuPosition, setMenuPosition] = useState<Position>({ top: 0, left: 0 })
@@ -38,7 +47,8 @@ export default function ContextMenuContainer( { children, menu, className, style
             return;
         }
 
-        setShowMenu(true)
+        //setShowMenu(true)
+        setActiveMenu(id)
 
         const menu_rect = menuRef.current.getBoundingClientRect();
 
@@ -64,43 +74,12 @@ export default function ContextMenuContainer( { children, menu, className, style
     }
 
     useEffect(() => {
-        if (showMenu) {
-            console.log('setting menuRef focus')
-            console.log(menuRef)
-            menuRef.current.focus()
+        if (activeMenu === id) {
+            setShowMenu(true)
+        } else {
+            setShowMenu(false)
         }
-    }, [showMenu])
-
-    useEffect(() => {
-        menuRef.current.addEventListener('blur', (e: FocusEvent) => {
-            console.log('blurring')
-            const target = e.target as HTMLElement
-            const related_target = e.relatedTarget as HTMLElement
-            console.log(target)
-            console.log(related_target)
-            if(!target.contains(related_target)) {
-                setShowMenu(false)
-            }
-            
-        })
-        const tabbable_items = menuRef.current.querySelectorAll('[tabindex]')
-        console.log(tabbable_items)
-        tabbable_items.forEach(item => {
-            item.addEventListener('blur', (e: FocusEvent) => {
-                console.log('blurring item')
-                const related_target = e.relatedTarget as HTMLElement
-                console.log(related_target)
-                if (!menuRef.current.contains(related_target)) {
-                    console.log('target outside of menu')
-                    setShowMenu(false)
-                }
-            })
-            item.addEventListener('focus', () => {
-                console.log('focusing on menu item')
-                setShowMenu(true)
-            })
-        })
-    }, [])
+    }, [activeMenu])
 
     return (
         <div
