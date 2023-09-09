@@ -29,7 +29,11 @@ type Props = HTMLAttributes<HTMLDivElement> & {
 
 export default function ContextMenuContainer( { children, menu, className, style }: PropsWithChildren<Props>) {
 
-    const { setActiveMenu, activeMenu } = useContext(ContextMenuContext)
+    const context_exists = useContext(ContextMenuContext)
+    if (!context_exists) {
+        throw new Error('missing <ContextMenuProvider/> component')
+    }
+    const { setActiveMenu, activeMenu } = context_exists
 
     const id = useId()
 
