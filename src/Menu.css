@@ -4,11 +4,15 @@
     min-width: 96px;
     list-style-type: none;
     background-color: white;
-    /* border: 1px solid gray; */
+    border: 10px solid gray;
     padding: 0px;
     margin: 0px;
     border-radius: 4px;
     box-shadow: 2px 2px 8px 0px #626262;
+}
+
+.menu:focus {
+    border: 10px solid black;
 }
 
 /* .menu > *:not(:last-child) {

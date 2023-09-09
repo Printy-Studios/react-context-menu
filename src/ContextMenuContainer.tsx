@@ -66,7 +66,6 @@ export default function ContextMenuContainer( { children, menu, className, style
     useEffect(() => {
         if (showMenu) {
             menuRef.current.focus()
-
         }
     }, [showMenu])
 
@@ -78,7 +77,7 @@ export default function ContextMenuContainer( { children, menu, className, style
 
     return (
         <div
-            className={`ContextMenuContainer${className ? ' ' + className : ''}`}
+            className={`${className ? ' ' + className : ''}`}
             style={{
                 ...style
             }}
