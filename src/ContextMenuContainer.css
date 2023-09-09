@@ -11,5 +11,6 @@
 
 .MenuWrapper:focus {
     outline: none;
-    border: none;
+    /* border: none; */
+    border: 4px solid green
 }

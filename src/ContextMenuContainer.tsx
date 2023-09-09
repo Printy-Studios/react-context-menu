@@ -4,12 +4,15 @@ import
     HTMLAttributes, 
     PropsWithChildren, 
     ReactNode, 
+    useContext, 
     useEffect, 
+    useId, 
     useRef, 
     useState 
 } from 'react'
 
 import './ContextMenuContainer.css'
+import { ContextMenuContext } from './ContextMenuProvider'
 
 type Position = {
     top?: number | string,
@@ -22,7 +25,17 @@ type Props = HTMLAttributes<HTMLDivElement> & {
     menu?: ReactNode
 }
 
+//let max_id
+
 export default function ContextMenuContainer( { children, menu, className, style }: PropsWithChildren<Props>) {
+
+    const context_exists = useContext(ContextMenuContext)
+    if (!context_exists) {
+        throw new Error('missing <ContextMenuProvider/> component')
+    }
+    const { setActiveMenu, activeMenu } = context_exists
+
+    const id = useId()
 
     const [showMenu, setShowMenu] = useState<boolean>(false)
     const [menuPosition, setMenuPosition] = useState<Position>({ top: 0, left: 0 })
@@ -38,7 +51,8 @@ export default function ContextMenuContainer( { children, menu, className, style
             return;
         }
 
-        setShowMenu(true)
+        //setShowMenu(true)
+        setActiveMenu(id)
 
         const menu_rect = menuRef.current.getBoundingClientRect();
 
@@ -64,21 +78,16 @@ export default function ContextMenuContainer( { children, menu, className, style
     }
 
     useEffect(() => {
-        if (showMenu) {
-            menuRef.current.focus()
-
-        }
-    }, [showMenu])
-
-    useEffect(() => {
-        menuRef.current.addEventListener('blur', (e: FocusEvent) => {
+        if (activeMenu === id) {
+            setShowMenu(true)
+        } else {
             setShowMenu(false)
-        })
-    }, [])
+        }
+    }, [activeMenu])
 
     return (
         <div
-            className={`ContextMenuContainer${className ? ' ' + className : ''}`}
+            className={`${className ? ' ' + className : ''}`}
             style={{
                 ...style
             }}
@@ -86,7 +95,7 @@ export default function ContextMenuContainer( { children, menu, className, style
         >
             <div 
                 ref={menuRef}
-                tabIndex={0}
+                tabIndex={-1}
                 className="MenuWrapper"
                 style={{
                     visibility: showMenu ? 'visible' : 'hidden',
