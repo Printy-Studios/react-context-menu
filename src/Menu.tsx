@@ -17,6 +17,7 @@ export default function Menu( { options, className, itemClassName }: Props ) {
         <ul className={`menu ${className}`}>
             {options.map(option => (
                 <li 
+                    tabIndex={0}
                     key={ option.key || option.label }
                     className={`menu-item ${itemClassName}`} 
                     onClick={option.onClick}

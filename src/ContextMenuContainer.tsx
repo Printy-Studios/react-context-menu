@@ -65,13 +65,40 @@ export default function ContextMenuContainer( { children, menu, className, style
 
     useEffect(() => {
         if (showMenu) {
+            console.log('setting menuRef focus')
+            console.log(menuRef)
             menuRef.current.focus()
         }
     }, [showMenu])
 
     useEffect(() => {
         menuRef.current.addEventListener('blur', (e: FocusEvent) => {
-            setShowMenu(false)
+            console.log('blurring')
+            const target = e.target as HTMLElement
+            const related_target = e.relatedTarget as HTMLElement
+            console.log(target)
+            console.log(related_target)
+            if(!target.contains(related_target)) {
+                setShowMenu(false)
+            }
+            
+        })
+        const tabbable_items = menuRef.current.querySelectorAll('[tabindex]')
+        console.log(tabbable_items)
+        tabbable_items.forEach(item => {
+            item.addEventListener('blur', (e: FocusEvent) => {
+                console.log('blurring item')
+                const related_target = e.relatedTarget as HTMLElement
+                console.log(related_target)
+                if (!menuRef.current.contains(related_target)) {
+                    console.log('target outside of menu')
+                    setShowMenu(false)
+                }
+            })
+            item.addEventListener('focus', () => {
+                console.log('focusing on menu item')
+                setShowMenu(true)
+            })
         })
     }, [])
 
@@ -85,7 +112,7 @@ export default function ContextMenuContainer( { children, menu, className, style
         >
             <div 
                 ref={menuRef}
-                tabIndex={0}
+                tabIndex={-1}
                 className="MenuWrapper"
                 style={{
                     visibility: showMenu ? 'visible' : 'hidden',
