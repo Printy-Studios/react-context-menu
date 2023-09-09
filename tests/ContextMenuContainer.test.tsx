@@ -99,7 +99,7 @@ describe("<ContextMenuContainer/>", () => {
 
         const menu_cmpt = screen.getByText('Option #1').closest('ul').closest('div')
 
-        expect(menu_cmpt)./*not.*/toBeVisible()
+        expect(menu_cmpt).not.toBeVisible()
 
         await fireEvent.contextMenu(context_cmpt)
 
@@ -118,6 +118,7 @@ describe("<ContextMenuContainer/>", () => {
 
         function overflowsPage(element: HTMLElement) {
             const rect = element.getBoundingClientRect()
+            //
             //This console log returns zero values
             //console.log(rect)
 
