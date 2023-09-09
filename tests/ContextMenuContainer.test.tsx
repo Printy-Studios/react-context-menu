@@ -118,6 +118,7 @@ describe("<ContextMenuContainer/>", () => {
 
         function overflowsPage(element: HTMLElement) {
             const rect = element.getBoundingClientRect()
+            //
             //This console log returns zero values
             //console.log(rect)
 
