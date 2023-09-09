@@ -21,6 +21,9 @@
   "license": "MIT",
   "repository": "github:Printy-Studios/react-context-menu",
   "devDependencies": {
-    "@testing-library/react": "^14.0.0"
+    "@testing-library/react": "^14.0.0",
+    "jest": "^29.6.2",
+    "jest-environment-jsdom": "^29.6.2",
+    "@types/jest": "^29.5.3"
   }
 }
