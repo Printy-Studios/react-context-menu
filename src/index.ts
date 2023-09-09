@@ -1,5 +1,5 @@
 import Menu from './Menu';
 import ContextMenuContainer from './ContextMenuContainer';
+import ContextMenuProvider from './ContextMenuProvider';
 
-export default ContextMenuContainer
-export { Menu }
+export { ContextMenuContainer, Menu, ContextMenuProvider }

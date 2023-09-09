@@ -1,7 +1,7 @@
 import React from 'react'
 import { fireEvent, render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom'
-import ContextMenuContainer, { Menu } from '../src'
+import {ContextMenuContainer, ContextMenuProvider, Menu } from '../src'
 
 const text1 = 'example text'
 const text2 = 'another text'
@@ -52,16 +52,19 @@ describe("<ContextMenuContainer/>", () => {
 
     beforeEach(() => {
         render(
-            <ContextMenuContainer
-                style={{
-                    backgroundColor: 'green',
-                    width: '100%',
-                    height: '100px'
-                }}
-                menu={menu_1}
-            >
-                {text1}
-            </ContextMenuContainer>
+            <ContextMenuProvider>
+                <ContextMenuContainer
+                    style={{
+                        backgroundColor: 'green',
+                        width: '100%',
+                        height: '100px'
+                    }}
+                    menu={menu_1}
+                >
+                    {text1}
+                </ContextMenuContainer>
+            </ContextMenuProvider>
+            
         )
     })
 
@@ -132,29 +135,39 @@ describe("<ContextMenuContainer/>", () => {
 
         expect(overflowsPage(menu_cmpt)).toBeFalsy()
     })
+
+    //#TODO
+    it.todo('Should hide menu when clicked outside of it')
+
+    //#TODO
+    it.todo('Should hide menu when the hide key is pressed')
+
 })
 
 describe('Nested <ContextMenuContainer>s', () => {
     beforeEach(() => {
         render(
-            <ContextMenuContainer
-                style={{
-                    width: '100%',
-                    height: '100px'
-                }}
-                menu={menu_1}
-            >
-                {text1}
+            <ContextMenuProvider>
                 <ContextMenuContainer
                     style={{
-                        width: '40%',
-                        height: '50px'
+                        width: '100%',
+                        height: '100px'
                     }}
-                    menu={menu_2}
+                    menu={menu_1}
                 >
-                    {text2}
+                    {text1}
+                    <ContextMenuContainer
+                        style={{
+                            width: '40%',
+                            height: '50px'
+                        }}
+                        menu={menu_2}
+                    >
+                        {text2}
+                    </ContextMenuContainer>
                 </ContextMenuContainer>
-            </ContextMenuContainer>
+            </ContextMenuProvider>
+            
         )   
     })
 
@@ -177,4 +190,9 @@ describe('Nested <ContextMenuContainer>s', () => {
     })
 
     
+})
+
+describe('<Menu/>', () => {
+    //#TODO
+    it.todo('Should focus on items with tab press')
 })

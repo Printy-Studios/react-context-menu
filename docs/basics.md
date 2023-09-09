@@ -13,7 +13,7 @@ Once you have a React app set up, install this library by running
 `npm install @printy/react-context-menu`
 
 This tutorial shows you how to use the library with TypeScript, but the process
-is pretty much the same for a JS project.
+is pretty much the same for a JS project, minus the types.
 
 ## Using the library
 
@@ -76,12 +76,30 @@ CSS file and apply the style on the component using the `className` prop<sub>
 Okay, now that we have our hero section, we can create a context menu for it by 
 using our library
 
-First, import the ContextMenuContainer and Menu components at the top of *HeroSection.tsx*
+First of all, import the `<ContextMenuProvider/>` and add it somewhere at the top
+level of your app. 
+
+*App.tsx*
+```
+import HeroSection from './HeroSection.tsx'
+import { ContextMenuProvider } from '@printy/react-context-menu'
+
+export default function App() {
+    <div>
+        <HeroSection />
+    </div>
+}
+```
+
+The [ContextMenuProvider](#) component manages the context menus and makes sure there
+is only one context menu open at a time.
+
+Next, let's import the `<ContextMenuContainer/>` and `<Menu/>` components at the top of *HeroSection.tsx*
 
 *HeroSection.tsx*
 ```
 //Somewhere at the top of the file
-import ContextMenuContainer, { Menu } from '@printy/react-context-menu'
+import { Menu, ContextMenuContainer } from '@printy/react-context-menu'
 /*...*/
 ```
 
@@ -108,6 +126,9 @@ and move the hero text inside the newly added component
 </section>
 /* ... */
 ```
+
+The (<ContextMenuContainer/>)[#] Defines the clickable area where right-clicking
+will invoke the context menu
 
 At this point, if you right click the section, nothing will happen. That's because
 we haven't specfied a `menu` prop for the `<ContextMenuContainer/>`, so let's go
